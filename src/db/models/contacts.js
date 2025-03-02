@@ -1,4 +1,5 @@
 import { model, Schema } from 'mongoose';
+import 'dotenv/config';
 
 const contactsSchema = new Schema(
   {
