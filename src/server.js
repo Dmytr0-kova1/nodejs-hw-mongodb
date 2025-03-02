@@ -3,13 +3,13 @@ import cors from 'cors';
 import pino from 'pino-http';
 import { getAllContact, getContactById } from './services/contacts.js';
 
-const PORT = process.env.PORT || 3000;
+const PORT = +(process.env.PORT || 3000);
 
 export const setupServer = () => {
   const app = express();
 
-  app.use(cors());
   app.use(express.json());
+  app.use(cors());
 
   app.use(
     pino({
@@ -20,12 +20,12 @@ export const setupServer = () => {
   );
 
   app.get('/contacts', async (req, res) => {
-    const students = await getAllContact();
+    const contacts = await getAllContact();
 
     res.status(200).json({
       status: 200,
       message: 'Successfully found contacts!',
-      data: students,
+      data: contacts,
     });
   });
 
