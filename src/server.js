@@ -1,4 +1,4 @@
-import express, { json } from 'express';
+import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
 import { getAllContact, getContactById } from './services/contacts.js';
@@ -9,7 +9,7 @@ export const setupServer = () => {
   const app = express();
 
   app.use(cors());
-  app.use(json());
+  app.use(express.json());
 
   app.use(
     pino({
