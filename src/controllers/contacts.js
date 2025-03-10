@@ -1,5 +1,5 @@
 import createHttpError from "http-errors";
-import { createContact, deleteContact, getAllContact, getContactById, updateContact } from "../services/contacts";
+import { createContact, deleteContact, getAllContact, getContactById, updateContact } from "../services/contacts.js";
 
 export const getContactsController = async (req, res) => {
     const contacts = await getAllContact();
@@ -61,4 +61,4 @@ export const deletContactController = async (req, res, next) => {
   }
 
   res.status(204);
-}
+};
