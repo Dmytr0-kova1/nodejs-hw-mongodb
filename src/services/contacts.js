@@ -16,9 +16,9 @@ export const createContact = async (payload) => {
 };
 
 export const updateContact = async (contactId, payload) => {
-  const contact = contactsCollection.findByIdAndUpdate(
-    contactId, payload, { new: true }
-  );
+  const contact = contactsCollection.findByIdAndUpdate(contactId, payload, {
+    new: true,
+  });
   return contact;
 };
 

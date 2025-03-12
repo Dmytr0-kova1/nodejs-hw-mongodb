@@ -1,9 +1,15 @@
-import createHttpError from "http-errors";
-import { createContact, deleteContact, getAllContact, getContactById, updateContact } from "../services/contacts.js";
+import createHttpError from 'http-errors';
+import {
+  createContact,
+  deleteContact,
+  getAllContact,
+  getContactById,
+  updateContact,
+} from '../services/contacts.js';
 
 export const getContactsController = async (req, res) => {
   const contacts = await getAllContact();
-    
+
   res.status(200).json({
     status: 200,
     message: 'Successfully found contacts!',
@@ -14,11 +20,11 @@ export const getContactsController = async (req, res) => {
 export const getContactByIdController = async (req, res) => {
   const { contactId } = req.params;
   const contact = await getContactById(contactId);
-  
+
   if (!contact) {
-    throw createHttpError(404, "Contact not found");
-  };
-    
+    throw createHttpError(404, 'Contact not found');
+  }
+
   res.status(200).json({
     status: 200,
     message: `Successfully found contact with id ${contactId}!`,
@@ -32,7 +38,7 @@ export const createContactController = async (req, res) => {
 
   res.status(201).json({
     status: 201,
-    message: "Successfully created a contact!",
+    message: 'Successfully created a contact!',
     data: createdContact,
   });
 };
@@ -43,12 +49,12 @@ export const patchContactController = async (req, res) => {
   const updatedContact = await updateContact(contactId, contact);
 
   if (!updatedContact) {
-    throw createHttpError(404, "Contact not found");
-  };
+    throw createHttpError(404, 'Contact not found');
+  }
 
   res.status(200).json({
     status: 200,
-    message: "Successfully patched a contact!",
+    message: 'Successfully patched a contact!',
     data: updatedContact,
   });
 };
@@ -58,7 +64,7 @@ export const deletContactController = async (req, res, next) => {
   const deletedContact = await deleteContact(contactId);
 
   if (!deletedContact) {
-    throw createHttpError(404, "Contact not found");
+    throw createHttpError(404, 'Contact not found');
   }
 
   res.status(204).send();
