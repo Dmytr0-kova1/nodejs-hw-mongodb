@@ -15,6 +15,7 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { isValidId } from '../middlewares/isValidId.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { authenticate } from '../middlewares/authenticate.js';
+import { upload } from '../middlewares/multer.js';
 
 const router = express.Router();
 const jsonParser = express.json();
@@ -28,6 +29,7 @@ router.get('/:contactId', isValidId, ctrlWrapper(getContactByIdController));
 router.post(
   '/',
   jsonParser,
+  upload.single('photo'),
   validateBody(createContactShema),
   ctrlWrapper(createContactController),
 );
@@ -36,6 +38,7 @@ router.patch(
   '/:contactId',
   isValidId,
   jsonParser,
+  upload.single('photo'),
   validateBody(updateContactShema),
   ctrlWrapper(patchContactController),
 );
