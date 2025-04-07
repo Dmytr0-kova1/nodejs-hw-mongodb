@@ -26,10 +26,13 @@ properties:
     description: 'Whether is contact on favourites'
     type: boolean
     example: false
+    default: false
   contactType:
     description: "Contact's type"
     type: string
     enum: ['work', 'home', 'personal']
+    example: 'personal'
+    default: 'personal'
   userId:
     description: "Contact's user id"
     type: string
